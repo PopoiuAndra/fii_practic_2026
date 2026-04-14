@@ -1085,6 +1085,17 @@ resource "aws_autoscaling_group" "nc_dr_asg_primary" {
   desired_capacity    = 2
   vpc_zone_identifier = [aws_subnet.nc_dr_primary_private.id, aws_subnet.nc_dr_primary_private2.id]
   target_group_arns   = [aws_lb_target_group.nc_dr_tg_primary.arn]
+
+  # Roll instances when the launch template (user_data) changes.
+  instance_refresh {
+    strategy = "Rolling"
+    preferences {
+      min_healthy_percentage = 50
+      instance_warmup        = 120
+    }
+    triggers = ["launch_template"]
+  }
+
   tag {
     key                 = "Name"
     value               = "${var.dr_stack_name}-server"
@@ -1104,6 +1115,17 @@ resource "aws_autoscaling_group" "nc_dr_asg_secondary" {
   desired_capacity    = var.dr_standby_desired_capacity
   vpc_zone_identifier = [aws_subnet.nc_dr_private.id, aws_subnet.nc_dr_private2.id]
   target_group_arns   = [aws_lb_target_group.nc_dr_tg_secondary.arn]
+
+  # Roll instances when the launch template (user_data) changes.
+  instance_refresh {
+    strategy = "Rolling"
+    preferences {
+      min_healthy_percentage = 50
+      instance_warmup        = 120
+    }
+    triggers = ["launch_template"]
+  }
+
   tag {
     key                 = "Name"
     value               = "${var.dr_stack_name}-server-dr"
