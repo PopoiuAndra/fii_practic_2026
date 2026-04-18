@@ -278,7 +278,7 @@ resource "aws_iam_role_policy" "cloudpulse_access" {
 resource "aws_iam_role_policy_attachment" "cloudpulse_ec2_ssm_core" {
   provider   = aws.main
   role       = aws_iam_role.cloudpulse_ec2.name
-  policy_arn = "arn:aws:iam::218852528811:role/github_oidc"
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
 
 
