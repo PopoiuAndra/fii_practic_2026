@@ -281,6 +281,7 @@ resource "aws_iam_role_policy_attachment" "cloudpulse_ec2_ssm_core" {
   policy_arn = "arn:aws:iam::218852528811:role/github_oidc"
 }
 
+
 resource "aws_iam_instance_profile" "cloudpulse" {
   provider   = aws.main
   name       = "${var.main_stack_name}-instance-profile"
