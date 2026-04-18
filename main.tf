@@ -143,6 +143,8 @@ resource "aws_security_group" "cloudpulse_sg" {
 # the public internet — even though this instance has a public IP.
 # ============================================================
 
+
+
 resource "aws_security_group" "bedrock_endpoint_sg" {
   provider    = aws.main
   name        = "${var.main_stack_name}-bedrock-endpoint-sg"
