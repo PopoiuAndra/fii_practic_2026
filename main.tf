@@ -325,7 +325,7 @@ resource "aws_instance" "cloudpulse" {
   aws_region       = var.main_aws_region,
   image_key        = var.background_image_key,
   bedrock_model_id = var.bedrock_model_id,
-  bedrock_region   = "Global"
+  bedrock_region   = "us-east-1"
 })}
     PY_EOF
 
