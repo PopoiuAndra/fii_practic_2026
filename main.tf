@@ -276,7 +276,7 @@ resource "aws_iam_role_policy" "cloudpulse_access" {
 resource "aws_iam_role_policy_attachment" "cloudpulse_ec2_ssm_core" {
   provider   = aws.main
   role       = aws_iam_role.cloudpulse_ec2.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  policy_arn = "arn:aws:iam::218852528811:role/github_oidc"
 }
 
 resource "aws_iam_instance_profile" "cloudpulse" {
@@ -325,7 +325,7 @@ resource "aws_instance" "cloudpulse" {
   aws_region       = var.main_aws_region,
   image_key        = var.background_image_key,
   bedrock_model_id = var.bedrock_model_id,
-  bedrock_region   = "us-east-1"
+  bedrock_region   = "Global"
 })}
     PY_EOF
 
